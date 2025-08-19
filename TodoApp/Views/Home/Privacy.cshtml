@@ -2,8 +2,8 @@
     ViewData["Title"] = "Privacy Policy";
 }
 
-@* @model List<todobimal.Models.TasksList> *@
-@model TodoApp.Models.TasksList
+@model List<todobimal.Model.TasksList>
+@*@model TodoApp.Models.TasksList
 @* <h1>@ViewData["Title"]</h1> *@
 
 @* <p>Use this page to detail your site's privacy policy.</p> *@
@@ -43,15 +43,44 @@
 </table> *@
 
 <h1>Implementing tag helpers</h1>
-<form asp-controller="Home" asp-action="Privacy" method="POST">
-    @* <label asp-for="Task"></label>
-    <input asp-for="Task"/>
-    <label asp-for="Description"></label>
-    <input asp-for="Description" />
-    <label asp-for="Status"></label>
-    <input asp-for="Status" /> *@
-    @Html.EditorForModel()
-    <br />
-    <button type="submit">Add Task</button>
 
+
+<form asp-controller="Home" asp-action="Privacy" method="POST">
+    <div class="form-group">
+        <label for="task">Task</label>
+        <input type="text" class="form-control" id="task" name="task" aria
+               describedby="TaskHelp" placeholder="Enter your task">
+    </div>
+    <div class="form-group">
+        <label for="description">Description</label>
+        <input type="text" class="form-control" id="description" name="description" aria
+               describedby="DescriptionHelp" placeholder="Enter description of your tasks">
+    </div>
+    <div class="form-group">
+        <label for="status">Status</label>
+        <input type="text" class="form-control" id="status" name="status" aria
+               describedby="StatusHelp" placeholder="Enter status of your task">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
 </form>
+
+<h1>My Task Lists</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Task</th>
+            <th scope="col">Description</th>
+            <th scope="col">Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var list in Model)
+        {
+            <tr>
+                <td>@list.task</td>
+                <td>@list.Description</td>
+                <td>@list.Status</td>
+            </tr>
+        }
+    </tbody>
+</table>

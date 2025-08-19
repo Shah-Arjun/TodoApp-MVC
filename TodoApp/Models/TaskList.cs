@@ -4,6 +4,8 @@ namespace TodoApp.Models
 {
     public class TasksList
     {
+        public int Id { get; set; }
+
         [Required]
         [Display(Name = "Task")]
         public string? Task { get; set; }

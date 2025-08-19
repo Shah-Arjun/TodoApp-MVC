@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Threading.Tasks;
+using TodoApp.Data;
 using TodoApp.Models;
 
 namespace todobimal.Controllers
@@ -7,10 +9,12 @@ namespace todobimal.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly ApplicationDbContext _context;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, ApplicationDbContext context)
         {
             _logger = logger;
+            _context = context;
         }
 
         public IActionResult Index()
@@ -44,7 +48,23 @@ namespace todobimal.Controllers
             //    Status = "ToDo"},
 
             //};
-            return View(new TasksList());
+            //return View(new TasksList());
+            if (Request.Method == "POST")
+            {
+                var tlist = new TasksList
+                {
+                    Task = Request.Form["task"],
+                    Description = Request.Form["description"],
+                    Status = Request.Form["status"]
+                };
+                
+Console.WriteLine(tlist);
+                _context.TaskList.Add(tlist);
+                _context.SaveChanges();
+                Console.WriteLine("Form Submitted");
+            }
+            var tasklist = _context.TaskList.ToList();
+            return View(tasklist);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
