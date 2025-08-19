@@ -10,7 +10,7 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3 fw-bold">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">TodoApp</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -33,19 +33,17 @@
     </header>
 
 
-    <body class="d-flex flex-column min-vh-100 overflow-hidden">
-
-        <div class="container flex-grow-1">
+    <div class="container">
+        <main role="main" class="pb-3">
             @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted fixed-bottom bg-light py-2">
+        <div class="container text-center">
+            &copy; 2025 - TodoApp | Made by Arjun.dev
         </div>
-
-        <footer class="border-top footer text-muted mt-auto py-3 bg-light">
-            <div class="container text-center">
-                &copy; 2025 - TodoApp | Made by Arjun.dev
-            </div>
-        </footer>
-
-    </body>
+    </footer>
 
 
 
