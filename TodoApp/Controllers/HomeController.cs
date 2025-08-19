@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using TodoApp.Data;
 using TodoApp.Models;
 
-namespace todobimal.Controllers
+namespace TodoApp.Controllers
 {
     public class HomeController : Controller
     {
