@@ -1,0 +1,57 @@
+﻿@{
+    ViewData["Title"] = "Privacy Policy";
+}
+
+@* @model List<todobimal.Models.TasksList> *@
+@model TodoApp.Models.TasksList
+@* <h1>@ViewData["Title"]</h1> *@
+
+@* <p>Use this page to detail your site's privacy policy.</p> *@
+
+@* <h1>Data From ViewData</h1>
+
+<h3>Task Title:</h3>@ViewData["Title"]
+<h3>Task Description:</h3>@ViewData["Description"]
+<h3>Task Status:</h3>@ViewData["Status"]
+
+<h1>Data From ViewBag</h1>
+
+<h3>Task Title:</h3>@ViewBag.Task1
+<h3>Task Description:</h3>@ViewBag.Description1
+<h3>Task Status:</h3>@ViewBag.Status1
+
+<h1> view from model</h1>
+
+<table class="table" border=1>
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var task in Model)
+        {
+            <tr>
+                <td>@task.task</td>
+                <td>@task.Description</td>
+                <td>@task.Status</td>
+            </tr>
+        }
+    </tbody>
+</table> *@
+
+<h1>Implementing tag helpers</h1>
+<form asp-controller="Home" asp-action="Privacy" method="POST">
+    @* <label asp-for="Task"></label>
+    <input asp-for="Task"/>
+    <label asp-for="Description"></label>
+    <input asp-for="Description" />
+    <label asp-for="Status"></label>
+    <input asp-for="Status" /> *@
+    @Html.EditorForModel()
+    <br />
+    <button type="submit">Add Task</button>
+
+</form>
